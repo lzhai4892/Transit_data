@@ -20,13 +20,13 @@ data.sort_values("Date", inplace=True)
 # ]
 # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-dash_app = dash.Dash(__name__, assets_folder = 'assets')
-app = dash_app.server
-dash_app.title = "Florida Transit Performance Dashboard"
+app = dash.Dash(__name__, assets_folder = 'assets')
+server = app.server
+app.title = "Florida Transit Performance Dashboard"
 
 
 # Layout of the app
-dash_app.layout = html.Div(
+app.layout = html.Div(
     children=[
         html.Div(
             children=[
@@ -119,7 +119,7 @@ dash_app.layout = html.Div(
 )
 
 
-@dash_app.callback(
+@app.callback(
     [Output("UPT-chart", "figure"), Output("VRM-chart", "figure")],
     [
         Input("agency-size-filter", "value"),
@@ -175,4 +175,4 @@ def update_charts(VOM_CAT, agency_name, start_date, end_date):
     return UPT_chart_figure, VRM_chart_figure
 
 if __name__ == "__main__":
-    dash_app.run_server(debug=True)
+    app.run_server(debug=True)
