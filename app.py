@@ -7,23 +7,11 @@ import numpy as np
 from dash.dependencies import Output, Input
 
 data = pd.read_csv("monthly_bus_data_for_visual.csv")
-# data["Date"] = pd.to_datetime(data["date_col"], format="%m/%d/%Y")
 data["Date"] = pd.to_datetime(data["date_col"], format="%Y-%m-%d")
 data.sort_values("Date", inplace=True)
 
-# external_stylesheets = [
-#     {
-#         "href": "https://fonts.googleapis.com/css2?"
-#         "family=Lato:wght@400;700&display=swap",
-#         "rel": "stylesheet",
-#     },
-# ]
-# app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
-app = dash.Dash(__name__, assets_folder = 'assets')
+app = dash.Dash(__name__)
 server = app.server
-app.title = "Florida Transit Performance Dashboard"
-
 
 # Layout of the app
 app.layout = html.Div(
